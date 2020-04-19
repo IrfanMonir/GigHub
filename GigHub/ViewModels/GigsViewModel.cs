@@ -28,4 +28,9 @@ namespace GigHub.ViewModels
          return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }    
      }
+    public class GigsListingViewModel
+    {
+        public IEnumerable<Gig> Gigs { get; set; }
+    }
+
 }
