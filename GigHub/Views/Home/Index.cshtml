@@ -7,24 +7,27 @@
 
                 <th scope="col">Date Time</th>
                 <th scope="col">Artist Name</th>
+                <th scope="col">Genre</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var gig in Model.Gigs)
             {
-                <tr>
-                    <td>
-                        @gig.DateTime
-                    </td>
-                    <td>
-                        @gig.Artist.Name
-                    </td>
-                    <td>
-                        <button data-href="@Url.Action("Action", "AccomodationPackages", new { ID = gig.Id })" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal"><i class="fas fa-pen mr-1"></i>Edit</button>
-                        <button data-href="@Url.Action("Delete", "AccomodationPackages", new { ID = gig.Id })" type="button" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @gig.DateTime
+                </td>
+                <td>
+                    @gig.Artist.Name
+                </td>
+                <td>
+                    @gig.Genre.Name
+                </td>
+                <td>
+                    <button data-gig-id="@gig.Id" class="btn btn-primary js-toggle-attendence">Going ?</button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -35,3 +38,25 @@ else
         Sorry! NO Gigs exist.
     </div>
 }
+@section scripts
+{
+    
+  <script>
+      $(document).ready(function () {
+          $(".js-toggle-attendence").click(function (e) {
+              var button = $(e.target);
+              $.post("/api/attendences", {gigId:button.attr("data-gig-id")})
+                  .done(function () {
+                      button.removeClass("btn-primary")
+                          .addClass("btn-info").text("Going");
+
+                  })
+                  .fail(function () {
+                      alert("Something Failed");
+                  });
+          });
+
+      });
+    </script>  
+    
+ }

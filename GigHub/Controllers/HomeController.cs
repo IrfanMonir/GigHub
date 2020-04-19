@@ -19,7 +19,10 @@ namespace GigHub.Controllers
         public ActionResult Index()
         {
             GigsListingViewModel model = new GigsListingViewModel();
-            model.Gigs = _context.Gigs.Include(g => g.Artist).Where(g => g.DateTime > DateTime.Now);
+            model.Gigs = _context.Gigs
+                .Include(g => g.Artist).Where(g => g.DateTime > DateTime.Now)
+                .Include(g=>g.Genre);
+            
             
             return View(model);
         }
