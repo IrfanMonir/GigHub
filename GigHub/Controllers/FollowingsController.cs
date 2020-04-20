@@ -26,8 +26,8 @@ namespace GigHub.Controllers
                 ) return BadRequest("Following already exists");
             var following = new Following
             {
-FollowerId =userId,
-FolloweeId =dto.FolloweeId
+             FollowerId =userId,
+             FolloweeId =dto.FolloweeId
             };
             _context.Followings.Add(following);
             _context.SaveChanges();
