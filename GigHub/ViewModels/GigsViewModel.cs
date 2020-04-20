@@ -30,7 +30,8 @@ namespace GigHub.ViewModels
      }
     public class GigsListingViewModel
     {
-        public IEnumerable<Gig> Gigs { get; set; }
+        public IEnumerable<Gig> UpComingGigs { get; set; }
+        public bool ShowActions { get; set; }
     }
 
 }

@@ -1,5 +1,5 @@
 ﻿@model GigHub.ViewModels.GigsListingViewModel
-@if (Model != null && Model.Gigs != null && Model.Gigs.Count() > 0)
+@if (Model != null && Model.UpComingGigs != null && Model.UpComingGigs.Count() > 0)
 {
     <table class="table table-striped">
         <thead>
@@ -8,11 +8,15 @@
                 <th scope="col">Date Time</th>
                 <th scope="col">Artist Name</th>
                 <th scope="col">Genre</th>
-                <th scope="col">Actions</th>
+                @if (Model.ShowActions)
+                {
+                    <th scope="col">Actions</th>
+                }
+
             </tr>
         </thead>
         <tbody>
-            @foreach (var gig in Model.Gigs)
+            @foreach (var gig in Model.UpComingGigs)
             {
             <tr>
                 <td>
@@ -24,9 +28,14 @@
                 <td>
                     @gig.Genre.Name
                 </td>
-                <td>
-                    <button data-gig-id="@gig.Id" class="btn btn-primary js-toggle-attendence">Going ?</button>
-                </td>
+                @if (Model.ShowActions)
+                {
+                    <td>
+                        <button data-gig-id="@gig.Id" class="btn btn-primary js-toggle-attendence">Going ?</button>
+                        <button data-user-id="@gig.ArtistId" class="btn btn-link js-toggle-following">Following ?</button>
+                    </td>
+                }
+
             </tr>
             }
         </tbody>
@@ -49,6 +58,18 @@ else
                   .done(function () {
                       button.removeClass("btn-primary")
                           .addClass("btn-info").text("Going");
+
+                  })
+                  .fail(function () {
+                      alert("Something Failed");
+                  });
+          });
+           $(".js-toggle-following").click(function (e) {
+              var button = $(e.target);
+              $.post("/api/followings", {followeeId:button.attr("data-user-id")})
+                  .done(function () {
+                      button.removeClass("btn-link")
+                          .addClass("btn-info").text("Following");
 
                   })
                   .fail(function () {
