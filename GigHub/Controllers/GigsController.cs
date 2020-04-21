@@ -65,5 +65,15 @@ namespace GigHub.Controllers
             };
             return View(model);
         }
+        [Authorize]
+        public ActionResult FollowingArtist()
+        {
+            var userId = User.Identity.GetUserId();
+            var followings = _context.Followings.Where(f => f.FollowerId == userId).Select(f => f.Followee).Include(f=>f.Followers).ToList();
+
+            GigsListingViewModel model = new GigsListingViewModel();
+            model.Followers = followings;
+            return View(model);
+        }
     }
 }

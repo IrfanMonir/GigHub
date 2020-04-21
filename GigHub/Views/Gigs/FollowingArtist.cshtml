@@ -1,0 +1,50 @@
+﻿@model GigHub.ViewModels.GigsListingViewModel
+@if (Model != null && Model.Followers != null && Model.Followers.Count() > 0)
+{
+    <h3 class="page-header">Artist I'm following</h3>
+    <table class="table table-bordered">
+        <thead>
+
+            <tr>
+
+
+                <th scope="col">Artist Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var followings in Model.Followers)
+            {
+                <tr>
+                    <td>
+                        @followings.Name
+                    </td>
+                    <td>
+                        @followings.Email
+                    </td>
+                    <td>
+                        <button data-user-id="@followings.Id" class="btn btn-link js-toggle-following">Following</button>
+                    </td>
+                    @*@if (Model.ShowActions)
+                        {
+                            <td>
+                                <button data-gig-id="@gig.Id" class="btn btn-primary js-toggle-attendence">Going</button>
+                                <button data-user-id="@gig.ArtistId" class="btn btn-link js-toggle-following">Following</button>
+                            </td>
+                        }*@
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger" role="alert">
+        Sorry! NO followers exist.
+    </div>
+}
+

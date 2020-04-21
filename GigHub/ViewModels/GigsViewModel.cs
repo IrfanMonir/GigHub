@@ -32,6 +32,8 @@ namespace GigHub.ViewModels
     {
         public IEnumerable<Gig> UpComingGigs { get; set; }
         public bool ShowActions { get; set; }
+        public IEnumerable<ApplicationUser> Followers { get; set; }
+
     }
 
 }
