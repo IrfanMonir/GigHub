@@ -47,7 +47,7 @@ namespace GigHub.Controllers
             };
             _context.Gigs.Add(gig);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("MyUpcomingGigs", "Gigs");
         }
         [Authorize]
         public ActionResult Attending()
@@ -74,6 +74,13 @@ namespace GigHub.Controllers
             GigsListingViewModel model = new GigsListingViewModel();
             model.Followers = followings;
             return View(model);
+        }
+        [Authorize]
+        public ActionResult MyUpcomingGigs()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs.Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now).Include(g => g.Genre).ToList();
+            return View(gigs);
         }
     }
 }
