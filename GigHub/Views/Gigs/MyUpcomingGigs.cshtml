@@ -11,6 +11,7 @@
                 <th scope="col">Venue</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Date Time</th>
+                <th scope="col">Actions</th>
 
 
             </tr>
@@ -27,6 +28,10 @@
                     </td>
                     <td>
                        @gig.DateTime
+                    </td>
+                     <td>
+                        <button onclick="window.location.href='@Url.Action("Edit", "Gigs",new {Id=gig.Id })'" class="data-btn btn btn-primary" type="button"><i class="fas fa-pen mr-1"></i> Edit</button>
+                        <button data-href="@Url.Action("Delete", "AccomodationPackages",new {Id=gig.Id })" type="button" class="data-btn btn btn-danger"><i class="fas fa-trash-alt mr-1"></i> Delete</button>
                     </td>
                 </tr>
             }

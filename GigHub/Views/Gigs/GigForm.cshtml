@@ -1,14 +1,15 @@
 ﻿@model GigHub.ViewModels.GigsViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title =Model.Heading;
 }
 
-<h2>Add a Gig</h2>
+<h2>@Model.Heading</h2>
 <p class="alert alert-info">All Fields are <strong>Required</strong></p>
 @using (Html.BeginForm("Create", "Gigs"))
 {
-    
+
    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.Id)
     <div class="form-group">
         @Html.LabelFor(m => m.Venue)
         @Html.TextBoxFor(m => m.Venue, new { @class = "form-control",autofocus="autofocus"})
