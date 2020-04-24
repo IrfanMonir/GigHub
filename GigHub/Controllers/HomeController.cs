@@ -21,7 +21,8 @@ namespace GigHub.Controllers
         {
             GigsListingViewModel model = new GigsListingViewModel();
             model.UpComingGigs = _context.Gigs
-                .Include(g => g.Artist).Where(g => g.DateTime > DateTime.Now)
+                .Include(g => g.Artist)
+                .Where(g => g.DateTime > DateTime.Now && !g.IsCanceled)
                 .Include(g=>g.Genre);
             model.ShowActions = User.Identity.IsAuthenticated;
             

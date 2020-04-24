@@ -17,25 +17,30 @@
         <tbody>
             @foreach (var gig in Model.UpComingGigs)
             {
-                <tr>
-                    <td>
-                        @gig.DateTime
-                    </td>
-                    <td>
-                        @gig.Artist.Name
-                    </td>
-                    <td>
-                        @gig.Genre.Name
-                    </td>
-                    @if (Model.ShowActions)
-                    {
-                        <td>
-                            <button data-gig-id="@gig.Id" class="btn btn-primary js-toggle-attendence">Going</button>
-                            <button data-user-id="@gig.ArtistId" class="btn btn-link js-toggle-following">Following</button>
-                        </td>
-                    }
+            <tr>
+                <td>
+                    @gig.DateTime
+                </td>
+                <td>
+                    @gig.Artist.Name
+                </td>
+                <td>
+                    @gig.Genre.Name
+                </td>
 
-                </tr>
+                <td>
+                    @if (Model.ShowActions && !gig.IsCanceled)
+                    {
+                        <button data-gig-id="@gig.Id" class="btn btn-primary js-toggle-attendence">Going</button>
+                    }
+                    @if (gig.IsCanceled)
+                    {<button class="btn btn-warning">Canceled</button>}
+
+                    <button data-user-id="@gig.ArtistId" class="btn btn-link js-toggle-following">Following</button>
+                </td>
+
+
+            </tr>
             }
         </tbody>
     </table>

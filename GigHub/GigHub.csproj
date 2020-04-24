@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\GigsController.cs" />
     <Compile Include="Controllers\AttendencesController.cs" />
     <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Controllers\GigsController.cs" />
@@ -220,6 +221,10 @@
     <Compile Include="Migrations\202004200546030_Add_Following.Designer.cs">
       <DependentUpon>202004200546030_Add_Following.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004231459494_AddIsCanceledTogig.cs" />
+    <Compile Include="Migrations\202004231459494_AddIsCanceledTogig.Designer.cs">
+      <DependentUpon>202004231459494_AddIsCanceledTogig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -244,6 +249,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -336,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004200546030_Add_Following.resx">
       <DependentUpon>202004200546030_Add_Following.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004231459494_AddIsCanceledTogig.resx">
+      <DependentUpon>202004231459494_AddIsCanceledTogig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

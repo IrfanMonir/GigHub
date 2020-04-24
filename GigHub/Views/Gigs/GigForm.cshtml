@@ -5,7 +5,7 @@
 
 <h2>@Model.Heading</h2>
 <p class="alert alert-info">All Fields are <strong>Required</strong></p>
-@using (Html.BeginForm("Create", "Gigs"))
+@using (Html.BeginForm(Model.Action, "Gigs"))
 {
 
    @Html.AntiForgeryToken()
