@@ -225,6 +225,10 @@
     <Compile Include="Migrations\202004231459494_AddIsCanceledTogig.Designer.cs">
       <DependentUpon>202004231459494_AddIsCanceledTogig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004251023479_AddNotification.cs" />
+    <Compile Include="Migrations\202004251023479_AddNotification.Designer.cs">
+      <DependentUpon>202004251023479_AddNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -234,6 +238,9 @@
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
@@ -345,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004231459494_AddIsCanceledTogig.resx">
       <DependentUpon>202004231459494_AddIsCanceledTogig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251023479_AddNotification.resx">
+      <DependentUpon>202004251023479_AddNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
