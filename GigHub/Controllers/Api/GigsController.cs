@@ -30,6 +30,7 @@ namespace GigHub.Controllers.Api
 
             if (gig.IsCanceled)
                 return NotFound();
+            gig.Cancel();
             _context.SaveChanges();
             return Ok();
         }

@@ -16,6 +16,10 @@ namespace GigHub.Models
 
         [Required]
         public Gig Gig { get; private set; }
+        protected Notification()
+        {
+
+        }
 
         private Notification(NotificationType type,Gig gig)
         {
