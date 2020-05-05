@@ -65,3 +65,6 @@ ul.notifications > li{
 ul.notifications >li:last-child{
     border-bottom:none;
 }
+ul.notifications > li .highlight{
+    font-weight:bold;
+}
