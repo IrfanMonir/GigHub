@@ -2,6 +2,19 @@
 @if (Model != null && Model.UpComingGigs != null && Model.UpComingGigs.Count() > 0)
 {
     <h3 class="page-header">Upcoming Gigs</h3>
+    using(Html.BeginForm("Search","Gigs"))
+    {
+        <div class="form-group">
+            <div id="searchGigs" class="input-group">
+                @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control" })
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-search"></i>
+                </span>
+            </div>
+           
+        </div>
+       
+    }
     <table class="table table-striped">
         <thead>
             <tr>

@@ -68,3 +68,6 @@ ul.notifications >li:last-child{
 ul.notifications > li .highlight{
     font-weight:bold;
 }
+#searchGigs{
+    width:300px;
+}
