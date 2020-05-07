@@ -18,33 +18,34 @@
     <table class="table table-striped">
         <thead>
             <tr>
-
-                <th scope="col">Date Time</th>
                 <th scope="col">Artist Name</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Venue</th>
+                <th scope="col">Date Time</th>
                 @if (Model.ShowActions)
                 {
                     <th scope="col">Actions</th>
                 }
-
             </tr>
         </thead>
         <tbody>
             @foreach (var gig in Model.UpComingGigs)
             {
             <tr>
+
                 <td>
-                    @gig.DateTime
-                </td>
-                <td>
-                    @gig.Artist.Name
+                    <a href="@Url.Action("Details","Gigs", new {id=gig.Id })">
+                        @gig.Artist.Name
+                    </a>
                 </td>
                 <td>
                     @gig.Genre.Name
                 </td>
                 <td>
                     @gig.Venue
+                </td>
+                <td>
+                    @gig.DateTime
                 </td>
                 @if (Model.ShowActions)
                 {
