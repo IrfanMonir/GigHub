@@ -53,6 +53,7 @@ namespace GigHub.ViewModels
         public IEnumerable<ApplicationUser> Followers { get; set; }
         public string SearchTerm { get; set; }
         public ILookup<int, Attendence> Attendences { get; internal set; }
+       
     }
 
 }

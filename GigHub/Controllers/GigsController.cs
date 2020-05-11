@@ -86,10 +86,16 @@ namespace GigHub.Controllers
                 .Select(a => a.Gig)
                 .Include(g => g.Artist)
                 .Include(g => g.Genre).ToList();
+            var attendences = _context.Attendences
+               .Where(a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now)
+               .ToList()
+               .ToLookup(a => a.GigId);
+
             var model = new GigsListingViewModel
             {
                 UpComingGigs = gigs,
-                ShowActions = User.Identity.IsAuthenticated
+                ShowActions = User.Identity.IsAuthenticated,
+                Attendences = attendences
             };
             return View(model);
         }
@@ -98,9 +104,14 @@ namespace GigHub.Controllers
         {
             var userId = User.Identity.GetUserId();
             var followings = _context.Followings.Where(f => f.FollowerId == userId).Select(f => f.Followee).Include(f=>f.Followers).ToList();
+            var attendences = _context.Attendences
+               .Where(a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now)
+               .ToList()
+               .ToLookup(a => a.GigId);
 
             GigsListingViewModel model = new GigsListingViewModel();
             model.Followers = followings;
+            model.Attendences = attendences;
             return View(model);
         }
         [Authorize]

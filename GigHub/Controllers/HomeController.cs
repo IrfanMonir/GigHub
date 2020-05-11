@@ -28,6 +28,7 @@ namespace GigHub.Controllers
                 .Where(a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now)
                 .ToList()
                 .ToLookup(a => a.GigId);
+           
             if (!string.IsNullOrWhiteSpace(query))
             {
                 upcomingGigs = upcomingGigs
@@ -40,6 +41,7 @@ namespace GigHub.Controllers
             model.ShowActions = User.Identity.IsAuthenticated;
             model.SearchTerm = query;
             model.Attendences = attendences;
+           
             
             return View(model);
         }
