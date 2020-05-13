@@ -53,7 +53,7 @@
                         <button data-gig-id="@gig.Id" 
                                 class="btn
                                 @(Model.Attendences.Contains(gig.Id)? "btn-info" : "btn-default") 
-                                js-toggle-attendence">Going?</button>
+                                js-toggle-attendence">Going ?</button>
                         <button data-user-id="@gig.ArtistId" class="btn btn-link js-toggle-following">Following ?</button>
                     </td>
                 }
@@ -74,40 +74,41 @@ else
     
   <script>
       $(document).ready(function () {
-          $(".js-toggle-attendence").click(function (e) {
-              var button = $(e.target);
-              if (button.hasClass("btn-default"))
-              {
-                   $.post("/api/attendences", {gigId:button.attr("data-gig-id")})
-                  .done(function () {
-                      button
-                          .removeClass("btn-default")
-                          .addClass("btn-info")
-                          .text("Going");
+          GigsController.init();
+          //$(".js-toggle-attendence").click(function (e) {
+          //    var button = $(e.target);
+          //    if (button.hasClass("btn-default"))
+          //    {
+          //         $.post("/api/attendences", {gigId:button.attr("data-gig-id")})
+          //        .done(function () {
+          //            button
+          //                .removeClass("btn-default")
+          //                .addClass("btn-info")
+          //                .text("Going");
 
-                  })
-                  .fail(function () {
-                      alert("You are already going.");
-                  });
-              }
-              else
-              {
-                  $.ajax({
-                      url: "/api/attendences/" + button.attr("data-gig-id"),
-                      method: "DELETE"
-                  })
-                      .done(function () {
-                          button
-                              .removeClass("btn-info")
-                              .addClass("btn-default")
-                              .text("Going?");
-                      })
-                      .fail(function () {
-                          alert("Something failed");
-                      });
-              }
+          //        })
+          //        .fail(function () {
+          //            alert("You are already going.");
+          //        });
+          //    }
+          //    else
+          //    {
+          //        $.ajax({
+          //            url: "/api/attendences/" + button.attr("data-gig-id"),
+          //            method: "DELETE"
+          //        })
+          //            .done(function () {
+          //                button
+          //                    .removeClass("btn-info")
+          //                    .addClass("btn-default")
+          //                    .text("Going?");
+          //            })
+          //            .fail(function () {
+          //                alert("Something failed");
+          //            });
+          //    }
              
-          });
+          //});
            $(".js-toggle-following").click(function (e) {
                var button = $(e.target);
               
