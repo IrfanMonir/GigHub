@@ -1,4 +1,25 @@
-﻿var GigsController = function () {
+﻿var AttendenceService = function () {
+    var createAttendence = function (gigId,done,fail) {
+        $.post("/api/attendences", { gigId: gigId })
+            .done(done)
+            .fail(fail);
+    };
+
+    var deleteAttendence = function (gigId,done,fail) {
+        $.ajax({
+            url: "/api/attendences/" + gigId,
+            method: "DELETE"
+        })
+            .done(done)
+            .fail(fail);
+    };
+    return {
+        createAttendence: createAttendence,
+        deleteAttendence: deleteAttendence
+    }
+}();
+
+var GigsController = function (attendenceService) {
     var button;
     var init = function () {
         $(".js-toggle-attendence").click(toggleAttendence);       
@@ -6,27 +27,15 @@
 
     var toggleAttendence = function (e) {
         button = $(e.target);
+        var gigId = button.attr("data-gig-id");
         if (button.hasClass("btn-default"))
-            createAttendence();
+            attendenceService.createAttendence(gigId, done,fail);
         else 
-            deleteAttendence();
+            attendenceService.deleteAttendence(gigId, done, fail);
         
     };
 
-    var createAttendence = function () {
-        $.post("/api/attendences", { gigId: button.attr("data-gig-id") })
-            .done(done)
-            .fail(fail);
-    };
-
-    var deleteAttendence = function () {
-        $.ajax({
-            url: "/api/attendences/" + button.attr("data-gig-id"),
-            method: "DELETE"
-        })
-            .done(done)
-            .fail(fail);
-    };
+    
 
     var done = function () {
         var text = (button.text() == "Going") ? "Going?" : "Going";
@@ -39,4 +48,4 @@
     return {
         init: init
     }
-}();
+}(AttendenceService);
